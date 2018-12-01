@@ -1,12 +1,5 @@
-# Shout-out to @Jagbox3 for helping me with location-fetching!
-
-from flask import Flask, jsonify, render_template, request
-import os
-import random
-app = Flask(__name__)
-
-from flask import request
-
+from flask import render_template
+from app import app
 
 @app.route('/')
 def index():
