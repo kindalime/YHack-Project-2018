@@ -1,6 +1,5 @@
-from flask import render_template, request
-from flask_sqlalchemy import SQLAlchemy
-import random
+from flask import render_template, jsonify, request
+import osimport random
 from app import app
 from popular_times import popular_times
 
