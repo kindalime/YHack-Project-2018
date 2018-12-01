@@ -15,5 +15,6 @@ def index():
 
 @app.route("/location", methods=['POST'])
 def location():
-    print(request.get_json())
+    print(request.get_json()['latitude'])
+    print(request.get_json()['longitude'])
     return "Hello!"
