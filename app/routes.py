@@ -1,6 +1,4 @@
-from flask import render_template, jsonify, request
-import os
-import random
+from flask import render_template
 from app import app
 
 @app.route('/')
