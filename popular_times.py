@@ -5,20 +5,29 @@ import googlemaps
 API_KEY = "AIzaSyCXkN4IwdOUzq8JDaBMdR4OK5JUaSmACJ4"
 gmaps = googlemaps.Client(key=API_KEY)
 
-def popular_times(p1, p2):
-    return populartimes.get(API_KEY, ["restaurant"], p1, p2)
+def popular_times(location):
+    coordinates = bound_coordinates(location, 0)
+    extra_distance = 0.5
+    results = populartimes.get(API_KEY, ["restaurant", "bakery", "bar", "cafe", "meal-delivery", "meal_takeaway"],
+                               coordinates[0], coordinates[1])
+    while (len(results) < 30):
+        coordinates = bound_coordinates(location, extra_distance)
+        results = populartimes.get(API_KEY, ["restaurant", "bakery", "bar", "cafe", "meal-delivery", "meal_takeaway"],
+                                   coordinates[0], coordinates[1])
+        extra_distance += 0.5
+    return results
 
-def bound_coordinates(location):
+def bound_coordinates(location, additional_distance):
     if locality_type(location) == 'urban':
-        distance = 2.5
+        distance = 0.1 + additional_distance
     elif locality_type(location) == 'suburban':
-        distance = 0.5
+        distance = 0.5 + additional_distance
     elif locality_type(location == 'rural'):
-        distance = 5
+        distance = 1 + additional_distance
 
     del_long = (distance * math.sqrt(2)) / (69 * math.cos(math.radians(location[0])))
     del_lat = (distance * math.sqrt(2)) / 69
-    return (location[0] - del_lat, location[1] + del_long), (location[0] + del_lat, location[1] - del_long)
+    return (location[0] + del_lat, location[1] + del_long), (location[0] - del_lat, location[1] - del_long)
 
 def locality_type(location):
     reverse_geocode_result = gmaps.reverse_geocode(location)
@@ -35,14 +44,3 @@ def locality_type(location):
             elif 'neighborhood' in address_comp[len(address_comp) - i - 1].get('types'):
                 return 'rural'
 
-
-def main():
-    print(locality_type((35.1495, 90.0490)))
-    coordinates = bound_coordinates((35.1495, 90.0490))
-    print(coordinates)
-    list = popular_times((35.09826037817489, 90.11166673537485), (35.200739621825115, 89.98633326462516))
-    print(list)
-    print(len(list))
-
-
-main()
