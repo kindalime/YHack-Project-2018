@@ -63,7 +63,7 @@ def append_new_info(location, results):
 
     for i in range (len(results)):
         file = Path("./static/img/Company Images/" + results[i].get('name') + ".png/")
-        if file.is_file():
+        if file.exists():
             results[i].update({'file_exists': 'true'})
         else:
             results[i].update({'file_exists': 'false'})
