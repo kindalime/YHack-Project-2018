@@ -16,12 +16,25 @@ def index():
 @app.route("/location", methods=['POST'])
 def location():
     location = [request.get_json()['latitude'], request.get_json()['longitude']]
-    make_database(location)
+    get_restaurants(location)
     return "abcabc"
 
-def make_database(location):
+def get_restaurants(location):
     print("a")
+
     near_restaurants = popular_times(location)
+    restaurants_list = []
+
+    for rest in near_restaurants:
+        new_rest = {
+            "name": rest["name"],
+            "address": rest["address"],
+            "bars": rest["bars"],
+            "stars": rest["stars"],
+            "distance": rest["root_distance"],
+        }
+
+        restaurants_list.append(new_rest)
 
 if __name__ == "__main__":
     app.run()
