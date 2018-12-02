@@ -79,8 +79,11 @@
 							<div class="column comp-pic">
 												
 								<!-- Insert company log in img below -->
-								{% if  %}
+								{% if restaurant.image_exists %}
 								<img class="img-fluid" src="/static/img/Company Images/{{ restaurant.name }}.png" alt="">
+								{% else %}
+								<img class="img-fluid" src="/static/img/Company Images/default.png" alt="">
+								{% endif %}
 							</div>
 							
 							<div class="column busy-pic">
