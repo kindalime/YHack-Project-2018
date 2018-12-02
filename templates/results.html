@@ -45,28 +45,28 @@
 	<div class="container">
 		<div class="row align-items-center justify-content-between d-flex">
 			<div id="logo">
-				<a href="index.html"><img src="/static/img/logo.png" alt="" title="" /></a>
+				<a href="/"><img src="/static/img/logo.png" alt="" title="" /></a>
 			</div>
 			<nav id="nav-menu-container">
 				<ul class="nav-menu">
 
 					<li class="menu-has-children"><a href="">Sort</a>
 						<ul>
-							<li><a href="elements.html">Rating</a></li>
-							<li><a href="elements.html">Business</a></li>
-							<li><a href="elements.html">Alphabetical</a></li>
-							<li><a href="elements.html">Distance</a></li>
+							<li><a href="/rating">Rating</a></li>
+							<li><a href="/business">Business</a></li>
+							<li><a href="/alphabetical">Alphabetical</a></li>
+							<li><a href="/distance">Distance</a></li>
 						</ul>
 					</li>
 
 					<li class="menu-has-children"><a href="">Filter</a>
 						<ul>
-							<li><a href="elements.html">Distance within 1 mile</a></li>
-							<li><a href="elements.html">Distance within 5 miles</a></li>
-							<li><a href="elements.html">Distance within 10 miles</a></li>
-							<li><a href="elements.html">Rating 4-5 Stars</a></li>
-							<li><a href="elements.html">Rating 3-4 Stars</a></li>
-							<li><a href="elements.html">Rating 3 or Less Stars</a></li>
+							<li><a href="/dist_1">Distance within 1 mile</a></li>
+							<li><a href="/dist_5">Distance within 5 miles</a></li>
+							<li><a href="/dist_10">Distance within 10 miles</a></li>
+							<li><a href="/rating_5">Rating 4-5 Stars</a></li>
+							<li><a href="/rating_4">Rating 3-4 Stars</a></li>
+							<li><a href="/rating_3">Rating 3 or Less Stars</a></li>
 						</ul>
 					</li>
 
@@ -101,7 +101,7 @@
 							<div class="column comp-pic">
 
 								<!-- Insert company log in img below -->
-								{% if restaurant.file_exists is sameas true %}
+								{% if restaurant.file_exists %}
 								    <img class="img-fluid" src="/static/img/Company Images/{{ restaurant.name }}.png" alt="">
 								{% else %}
 								    <img class="img-fluid" src="/static/img/Company Images/default.png" alt="">
