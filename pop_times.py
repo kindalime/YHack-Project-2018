@@ -21,7 +21,7 @@ def popular_times(location):
 
 def bound_coordinates(location, additional_distance):
     if locality_type(location) == 'urban':
-        distance = 0.07 + additional_distance
+        distance = 0.15 + additional_distance
     elif locality_type(location) == 'suburban':
         distance = 0.5 + additional_distance
     elif locality_type(location == 'rural'):
@@ -32,6 +32,7 @@ def bound_coordinates(location, additional_distance):
     return (location[0] + del_lat, location[1] + del_long), (location[0] - del_lat, location[1] - del_long)
 
 def locality_type(location):
+    print(location)
     reverse_geocode_result = gmaps.reverse_geocode(location)
     address_comp = reverse_geocode_result[0].get('address_components')
 

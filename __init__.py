@@ -6,7 +6,7 @@ import random
 from pop_times import append_new_info, popular_times
 
 app = Flask(__name__)
-location = []
+loc = []
 
 @app.route('/')
 def index():
@@ -15,13 +15,13 @@ def index():
 
 @app.route("/location", methods=['POST'])
 def location():
-    global location
-    location = [request.get_json()['latitude'], request.get_json()['longitude']]
-    print(location)
+    global loc
+    loc = [request.get_json()['latitude'], request.get_json()['longitude']]
+    print(loc)
     return "Redirecting..."
 
-def get_restaurants(location):
-    near_restaurants = append_new_info(location, popular_times(location))
+def get_restaurants(loc):
+    near_restaurants = append_new_info(loc, popular_times(loc))
     global restaurants_list
     restaurants_list = []
 
@@ -40,7 +40,7 @@ def get_restaurants(location):
 
 @app.route("/results")
 def results():
-    return render_template('results.html', restaurants = get_restaurants(location))
+    return render_template('results.html', restaurants = get_restaurants(loc))
 
 @app.route("/results_loader")
 def results_loader():
