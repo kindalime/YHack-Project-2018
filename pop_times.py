@@ -89,9 +89,9 @@ def append_new_info(location, results):
         distance = matrix.get('rows')[0].get('elements')[i].get('distance').get('text')
         units = distance[distance.find(" ") + 1:len(distance)]
         if units == 'ft':
-            route_distance = round(ft / 5280, 2)
+            route_distance = round(float(distance[0:distance.find(" ")] / 5280, 2))
         else:
-            route_distance = distance[0:distance.find(" ")]
+            route_distance = int(distance[0:distance.find(" ")])
         
         results[i].update({'route_distance': route_distance})
         results[i].update({'stars': stars})
@@ -118,24 +118,24 @@ def sort_distance(results):
 def filter_distance_1(results):
     newlist = []
     for x in range(len(results)):
-        s = results[x].get('distance')
-        if int(s[0:s.find(" ")]) <= 1:
+        int = results[x].get('distance')
+        if int <= 1:
             newlist.append(results[x])
     return newlist
 
 def filter_distance_5(results):
     newlist = []
     for x in range(len(results)):
-        s = results[x].get('distance')
-        if int(s[0:s.find(" ")]) <= 5:
+        int = results[x].get('distance')
+        if int <= 5:
             newlist.append(results[x])
     return newlist
 
 def filter_distance_10(results):
     newlist = []
     for x in range(len(results)):
-        s = results[x].get('distance')
-        if int(s[0:s.find(" ")]) <= 10:
+        int = results[x].get('distance')
+        if int <= 10:
             newlist.append(results[x])
     return newlist
 
