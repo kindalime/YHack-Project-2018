@@ -65,9 +65,9 @@ def append_new_info(location, results):
     for i in range (len(results)):
         file = Path("/static/img/Company Images/" + results[i].get('name').replace(" ", "") + ".png/")
         if file.is_file():
-            results[i].update({'file_exists?': 'true'})
+            results[i].update({'file_exists': 'true'})
         else:
-            results[i].update({'file_exists?': 'false'})
+            results[i].update({'file_exists': 'false'})
 
         rating = results[i].get('rating')
         if rating >= 0 and rating < 0.5:
@@ -84,11 +84,78 @@ def append_new_info(location, results):
             stars = 'star5.png'
         
         distance = matrix.get('rows')[0].get('elements')[i].get('distance').get('text')
+        units = distance[distance.find(" ") + 1:len(distance)]
+        if units == 'ft':
+            route_distance = round(ft / 5280, 2)
+        else:
+            route_distance = distance[0:distance.find(" ")]
         
-        results[i].update({'route_distance': distance})
+        results[i].update({'route_distance': route_distance})
         results[i].update({'stars': stars})
         data = results[i].get('populartimes')[day].get('data')
         bars = 'bar' + str(data[hour] // 10) + '.png'
         results[i].update({'bars': bars})
 
     return results
+<<<<<<< HEAD
+=======
+
+def sort_rating(results):
+    #reversed rating
+    return sorted(results, key=lambda k: k['rating'], reverse=True)
+
+def sort_busy(results):
+    #reversed business
+    return sorted(results, key=lambda k: k['bars'], reverse=True)
+
+def sort_alphabet(results):
+    return sorted(results, key=lambda k: k['name'])
+
+def sort_distance(results):
+    return sorted(results, key=lambda k: k['route_distance'])
+
+def filter_distance_1(results):
+    newlist = []
+    for x in range(len(results)):
+        s = results[x].get('distance')
+        if int(s[0:s.find(" ")]) <= 1:
+            newlist.append(results[x])
+    return newlist
+
+def filter_distance_5(results):
+    newlist = []
+    for x in range(len(results)):
+        s = results[x].get('distance')
+        if int(s[0:s.find(" ")]) <= 5:
+            newlist.append(results[x])
+    return newlist
+
+def filter_distance_10(results):
+    newlist = []
+    for x in range(len(results)):
+        s = results[x].get('distance')
+        if int(s[0:s.find(" ")]) <= 10:
+            newlist.append(results[x])
+    return newlist
+
+def filter_rating_4to5(results):
+    newlist = []
+    for x in range(len(results)):
+        if results[x].get('rating') >= 4:
+            newlist.append(results[x])
+    return newlist
+
+def filter_rating_3to4(results):
+    newlist = []
+    for x in range(len(results)):
+        if results[x].get('rating') >= 3 or results[x].get('rating') <= 4:
+            newlist.append(results[x])
+    return newlist
+
+def filter_rating_0to3(results):
+    newlist = []
+    for x in range(len(results)):
+        if results[x].get('rating') < 3:
+            newlist.append(results[x])
+    return newlist
+>>>>>>> 51070db7b091ac0748efbc242b5fa572fd506b24
