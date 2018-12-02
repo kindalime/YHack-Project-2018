@@ -3,7 +3,6 @@ import math
 import googlemaps
 import datetime
 from pathlib import Path
-import os
 
 API_KEY = "AIzaSyAklsbRetOAIkbuT97TP3gkHxCGobV8ZP4"
 gmaps = googlemaps.Client(key=API_KEY)
