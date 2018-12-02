@@ -12,7 +12,7 @@ def popular_times(location):
     extra_distance = 0.5
     results = populartimes.get(API_KEY, ["restaurant", "bakery", "bar", "cafe", "meal-delivery", "meal_takeaway"],
                                coordinates[0], coordinates[1])
-    while (len(results) < 10):
+    while (len(results) < 0):
         coordinates = bound_coordinates(location, extra_distance)
         results = populartimes.get(API_KEY, ["restaurant", "bakery", "bar", "cafe", "meal-delivery", "meal_takeaway"],
                                    coordinates[0], coordinates[1])
@@ -21,7 +21,7 @@ def popular_times(location):
 
 def bound_coordinates(location, additional_distance):
     if locality_type(location) == 'urban':
-        distance = 0.1 + additional_distance
+        distance = 0.07 + additional_distance
     elif locality_type(location) == 'suburban':
         distance = 0.5 + additional_distance
     elif locality_type(location == 'rural'):
