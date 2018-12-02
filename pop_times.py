@@ -9,12 +9,13 @@ import datetime
 API_KEY = "AIzaSyAklsbRetOAIkbuT97TP3gkHxCGobV8ZP4"
 gmaps = googlemaps.Client(key=API_KEY)
 
+
 def popular_times(location):
     coordinates = bound_coordinates(location, 0)
     extra_distance = 0.5
     results = populartimes.get(API_KEY, ["restaurant", "bakery", "bar", "cafe", "meal-delivery", "meal_takeaway"],
                                coordinates[0], coordinates[1])
-    while (len(results) < 30):
+    while (len(results) < 0):
         coordinates = bound_coordinates(location, extra_distance)
         results = populartimes.get(API_KEY, ["restaurant", "bakery", "bar", "cafe", "meal-delivery", "meal_takeaway"],
                                    coordinates[0], coordinates[1])
@@ -23,7 +24,7 @@ def popular_times(location):
 
 def bound_coordinates(location, additional_distance):
     if locality_type(location) == 'urban':
-        distance = 0.1 + additional_distance
+        distance = 0.08 + additional_distance
     elif locality_type(location) == 'suburban':
         distance = 0.5 + additional_distance
     elif locality_type(location == 'rural'):
@@ -48,39 +49,40 @@ def locality_type(location):
             elif 'neighborhood' in address_comp[len(address_comp) - i - 1].get('types'):
                 return 'rural'
 
-def append_img(results):
+def append_new_info(location, results):
+    origin = [location]
+    destinations = []
+
+    for i in range(len(results)):
+        destinations.append(results[i].get('coordinates'))
+
+    matrix = gmaps.distance_matrix(origin, destinations, units='imperial')
+
     now = datetime.datetime.now()
     day = now.weekday()
     hour = now.hour
 
-    for i in range(len(results)):
+    for i in range (len(results)):
         rating = results[i].get('rating')
-        if rating >= 0 and rating < 0.25:
-            stars = '0.jpg'
-        elif rating >= 0.25 and rating < 0.75:
-            stars = '05.jpg'
-        elif rating >= 0.75 and rating < 1.25:
-            stars = '1.jpg'
-        elif rating >= 1.25 and rating < 1.75:
-            stars = '15.jpg'
-        elif rating >= 1.75 and rating < 2.25:
-            stars = '2.jpg'
-        elif rating >= 2.25 and rating < 2.75:
-            stars = '25.jpg'
-        elif rating >= 2.75 and rating < 3.25:
-            stars = '3.jpg'
-        elif rating >= 3.25 and rating < 3.75:
-            stars = '35.jpg'
-        elif rating >= 3.75 and rating < 4.25:
-            stars = '4.jpg'
-        elif rating >= 4.25 and rating < 4.75:
-            stars = '45.jpg'
+        if rating >= 0 and rating < 0.5:
+            stars = 'star0.png'
+        elif rating >= 0.5 and rating < 1.5:
+            stars = 'star1.png'
+        elif rating >= 1.5 and rating < 2.5:
+            stars = 'star2.png'
+        elif rating >= 2.5 and rating < 3.5:
+            stars = 'star3.png'
+        elif rating >= 3.5 and rating < 4.5:
+            stars = 'star4.png'
         else:
-            stars = '5.jpg'
-
+            stars = 'star5.png'
+        
+        distance = matrix.get('rows')[0].get('elements')[i].get('distance').get('text')
+        
+        results[i].update({'route_distance': distance})
         results[i].update({'stars': stars})
         data = results[i].get('populartimes')[day].get('data')
-        bars = round(float(data[hour])/10.0)
+        bars = 'bar' + str(data[hour] // 10) + '.png'
         results[i].update({'bars': bars})
 
     return results
