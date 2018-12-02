@@ -1,12 +1,12 @@
 # Shout-out to @Jagbox3 for helping with location-fetching!
 # This program uses this module: https://github.com/m-wrzr/populartimes
 
-import importlib
 import populartimes
 import math
 import googlemaps
+import datetime
 
-API_KEY = "AIzaSyCXkN4IwdOUzq8JDaBMdR4OK5JUaSmACJ4"
+API_KEY = "AIzaSyAklsbRetOAIkbuT97TP3gkHxCGobV8ZP4"
 gmaps = googlemaps.Client(key=API_KEY)
 
 def popular_times(location):
@@ -47,3 +47,40 @@ def locality_type(location):
                 return'suburban'
             elif 'neighborhood' in address_comp[len(address_comp) - i - 1].get('types'):
                 return 'rural'
+
+def append_img(results):
+    now = datetime.datetime.now()
+    day = now.weekday()
+    hour = now.hour
+
+    for i in range(len(results)):
+        rating = results[i].get('rating')
+        if rating >= 0 and rating < 0.25:
+            stars = '0.jpg'
+        elif rating >= 0.25 and rating < 0.75:
+            stars = '05.jpg'
+        elif rating >= 0.75 and rating < 1.25:
+            stars = '1.jpg'
+        elif rating >= 1.25 and rating < 1.75:
+            stars = '15.jpg'
+        elif rating >= 1.75 and rating < 2.25:
+            stars = '2.jpg'
+        elif rating >= 2.25 and rating < 2.75:
+            stars = '25.jpg'
+        elif rating >= 2.75 and rating < 3.25:
+            stars = '3.jpg'
+        elif rating >= 3.25 and rating < 3.75:
+            stars = '35.jpg'
+        elif rating >= 3.75 and rating < 4.25:
+            stars = '4.jpg'
+        elif rating >= 4.25 and rating < 4.75:
+            stars = '45.jpg'
+        else:
+            stars = '5.jpg'
+
+        results[i].update({'stars': stars})
+        data = results[i].get('populartimes')[day].get('data')
+        bars = round(float(data[hour])/10.0)
+        results[i].update({'bars': bars})
+
+    return results
