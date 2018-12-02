@@ -55,32 +55,22 @@ def append_img(results):
 
     for i in range(len(results)):
         rating = results[i].get('rating')
-        if rating >= 0 and rating < 0.25:
-            stars = '0.jpg'
-        elif rating >= 0.25 and rating < 0.75:
-            stars = '05.jpg'
-        elif rating >= 0.75 and rating < 1.25:
-            stars = '1.jpg'
-        elif rating >= 1.25 and rating < 1.75:
-            stars = '15.jpg'
-        elif rating >= 1.75 and rating < 2.25:
-            stars = '2.jpg'
-        elif rating >= 2.25 and rating < 2.75:
-            stars = '25.jpg'
-        elif rating >= 2.75 and rating < 3.25:
-            stars = '3.jpg'
-        elif rating >= 3.25 and rating < 3.75:
-            stars = '35.jpg'
-        elif rating >= 3.75 and rating < 4.25:
-            stars = '4.jpg'
-        elif rating >= 4.25 and rating < 4.75:
-            stars = '45.jpg'
+        if rating >= 0 and rating < 0.5:
+            stars = 'star0.png'
+        elif rating >= 0.5 and rating < 1.5:
+            stars = 'star1.png'
+        elif rating >= 1.5 and rating < 2.5:
+            stars = 'star2.ong'
+        elif rating >= 2.5 and rating < 3.5:
+            stars = 'star3.png'
+        elif rating >= 3.5 and rating < 4.5:
+            stars = 'star4.png'
         else:
-            stars = '5.jpg'
+            stars = 'star5.png'
 
         results[i].update({'stars': stars})
         data = results[i].get('populartimes')[day].get('data')
-        bars = round(float(data[hour])/10.0)
+        bars = 'bar' + str(data[hour]//10) + '.png'
         results[i].update({'bars': bars})
 
     return results
