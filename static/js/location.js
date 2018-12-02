@@ -18,6 +18,9 @@ function success(position){
     url: '/location',
     data: JSON.stringify({'latitude': pos.lat, 'longitude': pos.lng}),
     contentType: "application/json",
+    success: function () {
+        window.location.href = '/results'
+    }
     });
 }
 
