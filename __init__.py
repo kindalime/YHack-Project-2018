@@ -17,11 +17,10 @@ def index():
 def location():
     global location
     location = [request.get_json()['latitude'], request.get_json()['longitude']]
+    print(location)
     return "Redirecting..."
 
 def get_restaurants(location):
-    print("a")
-
     near_restaurants = popular_times(location)
     global restaurants_list
     restaurants_list = []
@@ -30,9 +29,9 @@ def get_restaurants(location):
         new_rest = {
             "name": rest["name"],
             "address": rest["address"],
-            "bars": rest["bars"],
-            "stars": rest["stars"],
-            "distance": rest["root_distance"],
+            # "bars": rest["bars"],
+            # "stars": rest["stars"],
+            # "distance": rest["root_distance"],
         }
 
         restaurants_list.append(new_rest)
