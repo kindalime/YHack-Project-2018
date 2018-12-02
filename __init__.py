@@ -29,8 +29,8 @@ def get_restaurants(location):
         new_rest = {
             "name": rest["name"],
             "address": rest["address"],
-            # "bars": rest["bars"],
-            # "stars": rest["stars"],
+            "bars": rest["bars"],
+            "stars": rest["stars"],
             # "distance": rest["root_distance"],
         }
 
