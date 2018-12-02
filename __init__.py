@@ -88,5 +88,4 @@ def rating_4():
 def rating_3():
    return render_template('results.html', restaurants = pop_times.filter_rating_0to3(restaurants_list))
 
-if __name__ == "__main__":
-    app.run()
+app.run()
