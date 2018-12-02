@@ -12,9 +12,17 @@ def index():
 
 @app.route("/location", methods=['POST'])
 def location():
+    location = [request.get_json()['latitude'], request.get_json()['longitude']]
+    make_database(location)
+    return "abcabc"
+
+def make_database(location):
+    print("a")
     near_restaurants = popular_times((request.get_json()['latitude'], request.get_json()['longitude']))
 
     db = SQLAlchemy(app)
+
+    print("b")
 
     class Restaurant(db.Model):
         id = db.Column(db.Integer, primary_key=True)
@@ -47,6 +55,8 @@ def location():
         def __repr__(self):
             return '<Restaurant %r>' % self.name
 
+    print("c")
+
     def make_restaurant(rest):
         return Restaurant(
             rest["id"],
@@ -76,12 +86,17 @@ def location():
             rest["time_wait"][6]["data"],
         )
 
+    print("d")
+
     db.create_all()
     db.session.commit()
+
+    print("e")
 
     for rest in near_restaurants:
         db.session.add(make_restaurant(rest))
     restaurants = Restaurant.query.all()
-    print(restaurants)
 
-    return "Hello, world!"
+    print("f")
+
+    print(restaurants)
