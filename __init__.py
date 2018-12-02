@@ -12,16 +12,24 @@ def index():
 
 @app.route("/location", methods=['POST'])
 def location():
+    location = [request.get_json()['latitude'], request.get_json()['longitude']]
+    make_database(location)
+    return "abcabc"
+
+def make_database(location):
+    print("a")
     near_restaurants = popular_times((request.get_json()['latitude'], request.get_json()['longitude']))
 
     db = SQLAlchemy(app)
+
+    print("b")
 
     class Restaurant(db.Model):
         id = db.Column(db.Integer, primary_key=True)
         google_id = db.Column(db.String(120))
         name = db.Column(db.String(120))
         address = db.Column(db.String(180), unique=True)
-        types = db.Column(db.ARRAY(String))
+        types = db.Column(db.ARRAY(db.String(30)))
         lat = db.Column(db.Float)
         lng = db.Column(db.Float)
         rating = db.Column(db.Float)
@@ -29,23 +37,25 @@ def location():
         international_phone_number = db.Column(db.String(25))
         time_spent = db.Column(db.ARRAY(db.Integer))
         current_popularity = db.Column(db.Float)
-        pop_mon = db.Column(db.ARRAY(Integer))
-        pop_tue = db.Column(db.ARRAY(Integer))
-        pop_wed = db.Column(db.ARRAY(Integer))
-        pop_thr = db.Column(db.ARRAY(Integer))
-        pop_fri = db.Column(db.ARRAY(Integer))
-        pop_sat = db.Column(db.ARRAY(Integer))
-        pop_sun = db.Column(db.ARRAY(Integer))
-        time_mon = db.Column(db.ARRAY(Integer))
-        time_tue = db.Column(db.ARRAY(Integer))
-        time_wed = db.Column(db.ARRAY(Integer))
-        time_thr = db.Column(db.ARRAY(Integer))
-        time_fri = db.Column(db.ARRAY(Integer))
-        time_sat = db.Column(db.ARRAY(Integer))
-        time_sun = db.Column(db.ARRAY(Integer))
+        pop_mon = db.Column(db.ARRAY(db.Integer))
+        pop_tue = db.Column(db.ARRAY(db.Integer))
+        pop_wed = db.Column(db.ARRAY(db.Integer))
+        pop_thr = db.Column(db.ARRAY(db.Integer))
+        pop_fri = db.Column(db.ARRAY(db.Integer))
+        pop_sat = db.Column(db.ARRAY(db.Integer))
+        pop_sun = db.Column(db.ARRAY(db.Integer))
+        time_mon = db.Column(db.ARRAY(db.Integer))
+        time_tue = db.Column(db.ARRAY(db.Integer))
+        time_wed = db.Column(db.ARRAY(db.Integer))
+        time_thr = db.Column(db.ARRAY(db.Integer))
+        time_fri = db.Column(db.ARRAY(db.Integer))
+        time_sat = db.Column(db.ARRAY(db.Integer))
+        time_sun = db.Column(db.ARRAY(db.Integer))
 
         def __repr__(self):
             return '<Restaurant %r>' % self.name
+
+    print("c")
 
     def make_restaurant(rest):
         return Restaurant(
@@ -76,12 +86,17 @@ def location():
             rest["time_wait"][6]["data"],
         )
 
+    print("d")
+
     db.create_all()
     db.session.commit()
+
+    print("e")
 
     for rest in near_restaurants:
         db.session.add(make_restaurant(rest))
     restaurants = Restaurant.query.all()
-    print(restaurants)
 
-    return "Hello, world!"
+    print("f")
+
+    print(restaurants)
