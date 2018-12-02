@@ -2,6 +2,8 @@ import populartimes
 import math
 import googlemaps
 import datetime
+from pathlib import Path
+import os
 
 API_KEY = "AIzaSyAklsbRetOAIkbuT97TP3gkHxCGobV8ZP4"
 gmaps = googlemaps.Client(key=API_KEY)
@@ -16,16 +18,16 @@ def popular_times(location):
         coordinates = bound_coordinates(location, extra_distance)
         results = populartimes.get(API_KEY, ["restaurant", "bakery", "bar", "cafe", "meal-delivery", "meal_takeaway"],
                                    coordinates[0], coordinates[1])
-        extra_distance += 0.5
+        extra_distance += 0.02
     return results
 
 def bound_coordinates(location, additional_distance):
     if locality_type(location) == 'urban':
-        distance = 0.07 + additional_distance
+        distance = 0.03 + additional_distance
     elif locality_type(location) == 'suburban':
-        distance = 0.5 + additional_distance
+        distance = 0.09 + additional_distance
     elif locality_type(location == 'rural'):
-        distance = 1 + additional_distance
+        distance = 0.12 + additional_distance
 
     del_long = (distance * math.sqrt(2)) / (69 * math.cos(math.radians(location[0])))
     del_lat = (distance * math.sqrt(2)) / 69
@@ -60,6 +62,12 @@ def append_new_info(location, results):
     hour = now.hour
 
     for i in range (len(results)):
+        file = Path("/static/img/Company Images/" + results[i].get('name').replace(" ", "") + ".png/")
+        if file.is_file():
+            results[i].update({'file_exists?': 'true'})
+        else:
+            results[i].update({'file_exists?': 'false'})
+
         rating = results[i].get('rating')
         if rating >= 0 and rating < 0.5:
             stars = 'star0.png'
