@@ -89,7 +89,7 @@ def append_new_info(location, results):
         distance = matrix.get('rows')[0].get('elements')[i].get('distance').get('text')
         units = distance[distance.find(" ") + 1:len(distance)]
         if units == 'ft':
-            route_distance = round(float(distance[0:distance.find(" ")] / 5280, 2))
+            route_distance = round(float(distance[0:distance.find(" ")]) / 5280, 2)
         else:
             route_distance = float(distance[0:distance.find(" ")])
         
