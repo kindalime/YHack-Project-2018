@@ -1,6 +1,3 @@
-# Shout-out to @Jagbox3 for helping with location-fetching!
-# This program uses this module: https://github.com/m-wrzr/populartimes
-
 import populartimes
 import math
 import googlemaps
