@@ -17,7 +17,6 @@ def index():
 def location():
     global loc
     loc = [request.get_json()['latitude'], request.get_json()['longitude']]
-    print(loc)
     return "Redirecting..."
 
 def get_restaurants(loc):
