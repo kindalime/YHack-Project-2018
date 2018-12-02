@@ -3,7 +3,7 @@
 
 from flask import Flask, render_template, request
 import random
-from pop_times import popular_times
+from pop_times import append_new_info, popular_times
 
 app = Flask(__name__)
 location = []
@@ -21,7 +21,7 @@ def location():
     return "Redirecting..."
 
 def get_restaurants(location):
-    near_restaurants = popular_times(location)
+    near_restaurants = append_new_info(location, popular_times(location))
     global restaurants_list
     restaurants_list = []
 
