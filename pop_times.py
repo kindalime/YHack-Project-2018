@@ -62,7 +62,7 @@ def append_new_info(location, results):
     hour = now.hour
 
     for i in range (len(results)):
-        file = Path("/static/img/Company Images/" + results[i].get('name') + ".png/")
+        file = Path("./static/img/Company Images/" + results[i].get('name') + ".png/")
         if file.is_file():
             results[i].update({'file_exists': 'true'})
         else:
