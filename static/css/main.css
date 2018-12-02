@@ -449,6 +449,11 @@ td, th {
 .text-black {
   color: #000; }
 
+/*Jason's Place to Mess Around*/
+
+
+
+
 .transition {
   -webkit-transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
@@ -1552,6 +1557,16 @@ h1, h2, h3, h4, h5, h6 {
   transition: all 0.5s;
   z-index: 997; }
 
+#header-special {
+  padding: 20px 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  transition: all 0.5s;
+  background: #e21b4d;
+  z-index: 997; }
+
 #header.header-scrolled {
   background: #e21b4d;
   transition: all 0.5s; }
@@ -1841,8 +1856,8 @@ body.mobile-nav-active #mobile-nav-toggle {
     margin-top: 40px;
     margin-bottom: 50px; }
     .banner-content .input-wrap .form-box {
-      background: #fff;
-      max-width: 556px;
+      background: rgba(0,0,0,0.5);
+      max-width: 300px;
       padding: 5px 0px 5px 5px;
       margin: 0 auto; }
     .banner-content .input-wrap .form-control {
@@ -1985,6 +2000,17 @@ body.mobile-nav-active #mobile-nav-toggle {
   @media (max-width: 991px) {
     .feature-area {
       padding: 80px 0px; } }
+
+.comp-pic {
+	padding: 0px 0px 0px 15px}
+
+.rating-pic{
+	padding: 10px 0px 0px 15px}
+
+.busy-pic{
+	padding: 0px 0px 0px 15px }
+
+
 
 .feature-item {
   padding: 50px 40px;
