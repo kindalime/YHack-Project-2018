@@ -91,7 +91,7 @@ def append_new_info(location, results):
         if units == 'ft':
             route_distance = round(float(distance[0:distance.find(" ")] / 5280, 2))
         else:
-            route_distance = int(distance[0:distance.find(" ")])
+            route_distance = float(distance[0:distance.find(" ")])
         
         results[i].update({'route_distance': route_distance})
         results[i].update({'stars': stars})
