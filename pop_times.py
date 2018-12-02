@@ -66,11 +66,11 @@ def append_new_info(location, results):
         if "|" not in results[i].get('name'):
             file = Path("./static/img/Company Images/" + results[i].get('name') + ".png/")
             if file.exists():
-                results[i].update({'file_exists': true})
+                results[i].update({'file_exists': True})
             else:
-                results[i].update({'file_exists': false})
+                results[i].update({'file_exists': False})
         else:
-            results[i].update({'file_exists': false})
+            results[i].update({'file_exists': False})
 
         rating = results[i].get('rating')
         if rating >= 0 and rating < 0.5:

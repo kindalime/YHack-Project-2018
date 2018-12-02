@@ -45,7 +45,7 @@
 	<div class="container">
 		<div class="row align-items-center justify-content-between d-flex">
 			<div id="logo">
-				<a href="index.html"><img src="/static/img/logo.png" alt="" title="" /></a>
+				<a href="/"><img src="/static/img/logo.png" alt="" title="" /></a>
 			</div>
 			<nav id="nav-menu-container">
 				<ul class="nav-menu">
@@ -101,7 +101,7 @@
 							<div class="column comp-pic">
 
 								<!-- Insert company log in img below -->
-								{% if restaurant.file_exists is sameas true %}
+								{% if restaurant.file_exists %}
 								    <img class="img-fluid" src="/static/img/Company Images/{{ restaurant.name }}.png" alt="">
 								{% else %}
 								    <img class="img-fluid" src="/static/img/Company Images/default.png" alt="">
