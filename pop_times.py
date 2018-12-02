@@ -23,11 +23,7 @@ def popular_times(location):
 
 def bound_coordinates(location, additional_distance):
     if locality_type(location) == 'urban':
-<<<<<<< HEAD
         distance = 0.15 + additional_distance
-=======
-        distance = 0.03 + additional_distance
->>>>>>> c5828a70b501e1987125c92724a897920a16a7e9
     elif locality_type(location) == 'suburban':
         distance = 0.09 + additional_distance
     elif locality_type(location == 'rural'):
