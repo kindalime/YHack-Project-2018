@@ -43,6 +43,8 @@ def location():
         time_fri = db.Column(db.ARRAY(Integer))
         time_sat = db.Column(db.ARRAY(Integer))
         time_sun = db.Column(db.ARRAY(Integer))
+        num_stars = db.Column(db.ARRAY(Integer))
+        num_bars = db.Column(db.ARRAY(Integer))
 
         def __repr__(self):
             return '<Restaurant %r>' % self.name
@@ -85,3 +87,6 @@ def location():
     print(restaurants)
 
     return "Hello, world!"
+
+if __name__ == '__main__':
+    app.run(debug=True)
