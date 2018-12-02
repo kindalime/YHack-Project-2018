@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request
+from sqlalchemy.dialects.postgresql import ARRAY
 from flask_sqlalchemy import SQLAlchemy
 import random
 from pop_times import popular_times
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 
 @app.route('/')
 def index():
@@ -18,7 +20,7 @@ def location():
 
 def make_database(location):
     print("a")
-    near_restaurants = popular_times((request.get_json()['latitude'], request.get_json()['longitude']))
+    near_restaurants = popular_times(location)
 
     db = SQLAlchemy(app)
 
@@ -29,28 +31,28 @@ def make_database(location):
         google_id = db.Column(db.String(120))
         name = db.Column(db.String(120))
         address = db.Column(db.String(180), unique=True)
-        types = db.Column(db.ARRAY(db.String(30)))
+        types = db.Column(ARRAY(db.String(30)))
         lat = db.Column(db.Float)
         lng = db.Column(db.Float)
         rating = db.Column(db.Float)
         rating_n = db.Column(db.Float)
         international_phone_number = db.Column(db.String(25))
-        time_spent = db.Column(db.ARRAY(db.Integer))
+        time_spent = db.Column(ARRAY(db.Integer))
         current_popularity = db.Column(db.Float)
-        pop_mon = db.Column(db.ARRAY(db.Integer))
-        pop_tue = db.Column(db.ARRAY(db.Integer))
-        pop_wed = db.Column(db.ARRAY(db.Integer))
-        pop_thr = db.Column(db.ARRAY(db.Integer))
-        pop_fri = db.Column(db.ARRAY(db.Integer))
-        pop_sat = db.Column(db.ARRAY(db.Integer))
-        pop_sun = db.Column(db.ARRAY(db.Integer))
-        time_mon = db.Column(db.ARRAY(db.Integer))
-        time_tue = db.Column(db.ARRAY(db.Integer))
-        time_wed = db.Column(db.ARRAY(db.Integer))
-        time_thr = db.Column(db.ARRAY(db.Integer))
-        time_fri = db.Column(db.ARRAY(db.Integer))
-        time_sat = db.Column(db.ARRAY(db.Integer))
-        time_sun = db.Column(db.ARRAY(db.Integer))
+        pop_mon = db.Column(ARRAY(db.Integer))
+        pop_tue = db.Column(ARRAY(db.Integer))
+        pop_wed = db.Column(ARRAY(db.Integer))
+        pop_thr = db.Column(ARRAY(db.Integer))
+        pop_fri = db.Column(ARRAY(db.Integer))
+        pop_sat = db.Column(ARRAY(db.Integer))
+        pop_sun = db.Column(ARRAY(db.Integer))
+        time_mon = db.Column(ARRAY(db.Integer))
+        time_tue = db.Column(ARRAY(db.Integer))
+        time_wed = db.Column(ARRAY(db.Integer))
+        time_thr = db.Column(ARRAY(db.Integer))
+        time_fri = db.Column(ARRAY(db.Integer))
+        time_sat = db.Column(ARRAY(db.Integer))
+        time_sun = db.Column(ARRAY(db.Integer))
 
         def __repr__(self):
             return '<Restaurant %r>' % self.name
@@ -101,5 +103,5 @@ def make_database(location):
 
     print(restaurants)
 
-if __name__ == "__main__":
-    app.run()
+
+    return restaurants
