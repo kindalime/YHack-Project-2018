@@ -118,7 +118,7 @@ def sort_distance(results):
 def filter_distance_1(results):
     newlist = []
     for x in range(len(results)):
-        int = results[x].get('distance')
+        int = results[x].get('route_distance')
         if int <= 1:
             newlist.append(results[x])
     return newlist
@@ -126,7 +126,7 @@ def filter_distance_1(results):
 def filter_distance_5(results):
     newlist = []
     for x in range(len(results)):
-        int = results[x].get('distance')
+        int = results[x].get('route_distance')
         if int <= 5:
             newlist.append(results[x])
     return newlist
@@ -134,7 +134,7 @@ def filter_distance_5(results):
 def filter_distance_10(results):
     newlist = []
     for x in range(len(results)):
-        int = results[x].get('distance')
+        int = results[x].get('route_distance')
         if int <= 10:
             newlist.append(results[x])
     return newlist
