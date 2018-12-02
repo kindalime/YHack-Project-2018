@@ -25,9 +25,9 @@ def bound_coordinates(location, additional_distance):
     if locality_type(location) == 'urban':
         distance = 0.15 + additional_distance
     elif locality_type(location) == 'suburban':
-        distance = 0.09 + additional_distance
+        distance = 0.75 + additional_distance
     elif locality_type(location == 'rural'):
-        distance = 0.12 + additional_distance
+        distance = 1.50 + additional_distance
 
     del_long = (distance * math.sqrt(2)) / (69 * math.cos(math.radians(location[0])))
     del_lat = (distance * math.sqrt(2)) / 69
