@@ -9,7 +9,6 @@ from popular_times import popular_times
 def index():
     return render_template('index.html', name = random.randint(0, 9999))
 
-
 @app.route("/location", methods=['POST'])
 def location():
     near_restaurants = popular_times((request.get_json()['latitude'], request.get_json()['longitude']))
@@ -84,3 +83,7 @@ def location():
     restaurants = Restaurant.query.all()
     print(restaurants)
     return "Hello!"
+
+@app.route('/search')
+def results():
+    return render_template('search.html')

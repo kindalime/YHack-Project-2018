@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Daniel Kim\Documents\YHack\venv"
+VIRTUAL_ENV="C:\Users\Alex\Documents\GitHub\YHack-Project-2018\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

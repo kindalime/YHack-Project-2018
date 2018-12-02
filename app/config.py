@@ -1,0 +1,3 @@
+class Config(object):
+    # ...
+    RESULTS_PER_PAGE = 15
