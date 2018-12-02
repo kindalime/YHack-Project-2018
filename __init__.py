@@ -100,3 +100,6 @@ def make_database(location):
     print("f")
 
     print(restaurants)
+
+if __name__ == "__main__":
+    app.run()
