@@ -48,7 +48,7 @@ def locality_type(location):
             elif 'neighborhood' in address_comp[len(address_comp) - i - 1].get('types'):
                 return 'rural'
 
-def append_img(results):
+def append_new_info(results):
     now = datetime.datetime.now()
     day = now.weekday()
     hour = now.hour
