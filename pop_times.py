@@ -91,8 +91,3 @@ def append_new_info(location, results):
         results[i].update({'bars': bars})
 
     return results
-
-def main():
-    location = (40.714120, -73.997269)
-    print(append_new_info(location, popular_times(location)))
-main()
