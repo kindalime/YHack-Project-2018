@@ -2,7 +2,7 @@
 # This program uses this module: https://github.com/m-wrzr/populartimes
 
 import importlib
-populartimes = importlib.import_module("popular-times")
+import populartimes
 import math
 import googlemaps
 
