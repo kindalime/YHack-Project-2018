@@ -11,7 +11,7 @@ idna==2.7
 itsdangerous==1.1.0
 Jinja2==2.10
 MarkupSafe==1.1.0
-populartimes==2.0
+git+https://github.com/m-wrzr/populartimes.git#egg=populartimes
 requests==2.20.1
 SQLAlchemy==1.2.14
 urllib3==1.24.1
