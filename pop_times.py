@@ -63,11 +63,14 @@ def append_new_info(location, results):
     hour = now.hour
 
     for i in range (len(results)):
-        file = Path("./static/img/Company Images/" + results[i].get('name') + ".png/")
-        if file.exists():
-            results[i].update({'file_exists': 'true'})
+        if "|" not in results[i].get('name'):
+            file = Path("./static/img/Company Images/" + results[i].get('name') + ".png/")
+            if file.exists():
+                results[i].update({'file_exists': true})
+            else:
+                results[i].update({'file_exists': false})
         else:
-            results[i].update({'file_exists': 'false'})
+            results[i].update({'file_exists': false})
 
         rating = results[i].get('rating')
         if rating >= 0 and rating < 0.5:
@@ -156,3 +159,4 @@ def filter_rating_0to3(results):
         if results[x].get('rating') < 3:
             newlist.append(results[x])
     return newlist
+

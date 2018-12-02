@@ -30,6 +30,7 @@ def get_restaurants(loc):
             "address": rest["address"],
             "bars": rest["bars"],
             "stars": rest["stars"],
+            "file_exists": rest["file_exists"],
             # "distance": rest["root_distance"],
         }
 
