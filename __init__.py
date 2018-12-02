@@ -36,5 +36,9 @@ def get_restaurants(location):
 
         restaurants_list.append(new_rest)
 
+@app.route("/results")
+def results():
+    return render_template('results.html', restaurants=restaurants_list)
+
 if __name__ == "__main__":
     app.run()
