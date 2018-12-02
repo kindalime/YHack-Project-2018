@@ -41,17 +41,41 @@
 <body>
 
 	<!-- Start Header Area -->
-	<header id="header-special">
-		<div class="container">
-			<div class="row align-items-center justify-content-between d-flex">
-				<div id="logo">
-					<a href="index.html"><img src="/static/img/logo.png" alt="" title="" /></a>
-				</div>
-
+<header id="header-special">
+	<div class="container">
+		<div class="row align-items-center justify-content-between d-flex">
+			<div id="logo">
+				<a href="index.html"><img src="/static/img/logo.png" alt="" title="" /></a>
 			</div>
+			<nav id="nav-menu-container">
+				<ul class="nav-menu">
+
+					<li class="menu-has-children"><a href="">Sort</a>
+						<ul>
+							<li><a href="elements.html">Rating</a></li>
+							<li><a href="elements.html">Business</a></li>
+							<li><a href="elements.html">Alphabetical</a></li>
+							<li><a href="elements.html">Distance</a></li>
+						</ul>
+					</li>
+
+					<li class="menu-has-children"><a href="">Filter</a>
+						<ul>
+							<li><a href="elements.html">Distance within 1 mile</a></li>
+							<li><a href="elements.html">Distance within 5 miles</a></li>
+							<li><a href="elements.html">Distance within 10 miles</a></li>
+							<li><a href="elements.html">Rating 4-5 Stars</a></li>
+							<li><a href="elements.html">Rating 3-4 Stars</a></li>
+							<li><a href="elements.html">Rating 3 or Less Stars</a></li>
+						</ul>
+					</li>
+
+				</ul>
+			</nav><!-- #nav-menu-container -->
 		</div>
-	</header>
-	<!-- End Header Area -->
+	</div>
+</header>
+<!-- End Header Area -->
 
 
 	<!--Start Feature Area -->
@@ -75,7 +99,7 @@
 					<div class="feature-item">
 						<div class="row">
 							<div class="column comp-pic">
-												
+
 								<!-- Insert company log in img below -->
 								{% if restaurant.file_exists %}
 								<img class="img-fluid" src="/static/img/Company Images/{{ restaurant.name }}.png" alt="">
@@ -83,38 +107,38 @@
 								<img class="img-fluid" src="/static/img/Company Images/default.png" alt="">
 								{% endif %}
 							</div>
-							
+
 							<div class="column busy-pic">
 								<img class="img-fluid" src="/static/img/busy.png" alt="">
-							</div>								
+							</div>
 							<div class="column comp-pic">
-												
+
 								<!-- Insert busy level in img below -->
 								<img class="img-fluid" src="/static/img/Bars/{{ restaurant.bars }}" alt="">
-							</div>											
+							</div>
 							<div class="column rating-pic">
-													
+
 							<!-- Insert rating in img below -->
 								<img class="img-fluid rating-pic"
 								 src="/static/img/Ratings/{{ restaurant.stars }}" alt="">
 							</div>
 						</div>
-											
+
 						<!-- Insert company name in h4 below -->
 						<h4>{{ restaurant.name }}</h4>
 						<div class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".1s">
-													
+
 							<!-- Insert Location in p below -->
 							<p>
 								{{ restaurant.address }}
 							</p>
 						</div>
 					</div>
-				</div>	
+				</div>
 			</div>
 			<!--End Restaurant Card -->
 			{% endfor %}
-			
+
 		</div>
 	</section>
 	<!-- End Feature Area -->

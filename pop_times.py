@@ -97,8 +97,6 @@ def append_new_info(location, results):
         results[i].update({'bars': bars})
 
     return results
-<<<<<<< HEAD
-=======
 
 def sort_rating(results):
     #reversed rating
@@ -158,4 +156,3 @@ def filter_rating_0to3(results):
         if results[x].get('rating') < 3:
             newlist.append(results[x])
     return newlist
->>>>>>> 51070db7b091ac0748efbc242b5fa572fd506b24
